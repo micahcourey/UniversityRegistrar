@@ -1,12 +1,10 @@
 <?php
 
-    class Student
+    class Course
     {
         private $id;
         private $name;
-        private $enrollment_date;
-
-        
+        private $number;
     }
 
 ?>
