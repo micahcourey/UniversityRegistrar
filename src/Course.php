@@ -6,6 +6,13 @@
         private $name;
         private $number;
 
+        function __construct($id = null, $name, $number)
+        {
+            $this->id = $id;
+            $this->name = $name;
+            $this->number = $number;
+        }
+
         function getId()
         {
             return $this->id;

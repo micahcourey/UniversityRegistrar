@@ -6,6 +6,13 @@
         private $name;
         private $enrollment_date;
 
+        function __construct($id = null, $name, $enrollment_date)
+        {
+            $this->id = $id;
+            $this->name = $name;
+            $this->enrollment_date = $enrollment_date;
+        }
+
         function getId()
         {
             return $this->id;
@@ -30,6 +37,33 @@
         {
             $this->enrollment_date = $new_enrollment_date;
         }
+
+        function save()
+        {
+            $GLOBALS['DB']->exec("INSERT INTO students (name, enrollment_date) VALUES ('{$this->getName()}', '{$this->getEnrollmentDate()}');");
+            $this->id = $GLOBALS['DB']->lastInsertId();
+        }
+
+        static function getAll()
+        {
+            $returned_students = $GLOBALS['DB']->query("SELECT * FROM students ORDER BY name");
+            $students = array();
+            foreach ($returned_students as $student) {
+                $id = $student['id'];
+                $name = $student['name'];
+                $enrollment_date = $student['enrollment_date'];
+                $new_student = new Student($id, $name, $enrollment_date);
+                array_push($students, $new_student);
+            }
+            return $students;
+        }
+
+        static function deleteAll()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM students;");
+        }
+
+
     }
 
 ?>
