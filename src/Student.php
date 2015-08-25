@@ -44,6 +44,12 @@
             $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
+        function update($new_name)
+        {
+            $GLOBALS['DB']->exec("UPDATE students SET name = '{$new_name}' WHERE id = {$this->getId()};");
+            $this->setName($new_name);
+        }
+
         static function getAll()
         {
             $returned_students = $GLOBALS['DB']->query("SELECT * FROM students ORDER BY name");
@@ -77,7 +83,7 @@
         }
 
 
-        //Still need: update, delete, addCourse, getCourses
+        //Still need: delete, addCourse, getCourses
     }
 
 ?>

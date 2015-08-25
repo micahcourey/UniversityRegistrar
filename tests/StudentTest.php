@@ -19,6 +19,7 @@
         protected function tearDown()
         {
             Student::deleteAll();
+            Course::deleteAll();
         }
 
         function testGetName()
@@ -176,6 +177,22 @@
 
             //Assert
             $this->assertEquals($test_student, $result);
+        }
+
+        function testUpdate()
+        {
+            $id = null;
+            $name = "Micah";
+            $enrollment_date = "2015-08-30";
+            $test_student = new Student($id, $name, $enrollment_date);
+            $test_student->save();
+            $new_name = "Phil";
+
+            //Act
+            $test_student->update($new_name);
+
+            //Assert
+            $this->assertEquals("Phil", $test_student->getName());
         }
 
 
