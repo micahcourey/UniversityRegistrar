@@ -147,6 +147,7 @@
             $name2 = "Phil";
             $enrollment_date2 = "2015-04-01";
             $test_student2 = new Student($id, $name2, $enrollment_date2);
+            $test_student2->save();
 
             //Act
             Student::deleteAll();
@@ -154,6 +155,27 @@
 
             //Assert
             $this->assertEquals([], $result);
+        }
+
+        function testFind()
+        {
+            //Arrange
+            $id = null;
+            $name = "Micah";
+            $enrollment_date = "2015-08-28";
+            $test_student = new Student($id, $name, $enrollment_date);
+            $test_student->save();
+
+            $name2 = "Phil";
+            $enrollment_date2 = "2015-04-01";
+            $test_student2 = new Student($id, $name2, $enrollment_date2);
+            $test_student2->save();
+
+            //Act
+            $result = Student::find($test_student->getId());
+
+            //Assert
+            $this->assertEquals($test_student, $result);
         }
 
 
