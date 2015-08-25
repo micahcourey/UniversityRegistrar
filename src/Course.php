@@ -45,7 +45,6 @@
         }
 
 
-        //No test for this yet
         function getStudents()
         {
             $query = $GLOBALS['DB']->query("SELECT student_id FROM students_courses WHERE course_id = {$this->getId()};");
@@ -86,6 +85,5 @@
         }
     }
 
-    //Still need: update, delete, addStudent, getStudents
-
+    //Still need: update, delete, addStudent
 ?>
