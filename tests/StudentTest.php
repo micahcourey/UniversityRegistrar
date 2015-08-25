@@ -195,6 +195,28 @@
             $this->assertEquals("Phil", $test_student->getName());
         }
 
+        function testDeleteStudent()
+        {
+            //Arrange
+            $id = null;
+            $name = "Micah";
+            $enrollment_date = "2015-08-28";
+            $test_student = new Student($id, $name, $enrollment_date);
+            $test_student->save();
+
+            $name2 = "Intro to History";
+            $number = "HIST100";
+            $test_course = new Course($id, $name2, $number);
+            $test_course->save();
+
+            //Act
+            $test_student->addCourse($test_course);
+            $test_student->delete();
+
+            //Act
+            $this->assertEquals([], $test_course->getStudents());
+        }
+
 
     }
 ?>

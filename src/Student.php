@@ -49,6 +49,18 @@
             $GLOBALS['DB']->exec("UPDATE students SET name = '{$new_name}' WHERE id = {$this->getId()};");
             $this->setName($new_name);
         }
+        
+        function delete()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM students WHERE id = {$this->getId()};");
+            $GLOBALS['DB']->exec("DELETE FROM students_courses WHERE student_id = {$this->getId()};");
+        }
+
+        //No test for this yet
+        function addCourse($course)
+        {
+            $GLOBALS['DB']->exec("INSERT INTO students_courses (student_id, course_id) VALUES ({$this->getId()}, {$course->getId()});");
+        }
 
         static function getAll()
         {
@@ -83,7 +95,7 @@
         }
 
 
-        //Still need: delete, addCourse, getCourses
+        //Still need: getCourses
     }
 
 ?>
