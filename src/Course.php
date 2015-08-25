@@ -5,6 +5,33 @@
         private $id;
         private $name;
         private $number;
+
+        function getId()
+        {
+            return $this->id;
+        }
+
+        function getName()
+        {
+            return $this->name;
+        }
+
+        function getNumber()
+        {
+            return $this->number;
+        }
+
+        function setName($new_name)
+        {
+            $this->name = $new_name;
+        }
+
+        function setNumber($new_number)
+        {
+            $this->number = $new_number;
+        }
     }
+
+
 
 ?>
